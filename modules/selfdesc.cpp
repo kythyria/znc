@@ -120,13 +120,7 @@ void CSelfDescription::PutAction(CString& sTarget, CString& sMessage) {
   sPayload.Replace("$RP",m_responseprefix);
   sPayload.Replace("$MSG",sMessage);
   
-  //CChan* pChan = m_pNetwork->FindChan(sTarget);
-  //if (pChan) {
-  //  if (!pChan->AutoClearChanBuffer()) {
-  //    pChan->AddBuffer(":" + NickPrefix() + _NAMEDFMT(m_pNetwork->GetIRCNick().GetNickMask()) + " PRIVMSG " + _NAMEDFMT(sTarget) + " :{text}", sPayload);
-  //  }
-  //  m_pUser->PutUser(":" + NickPrefix() + m_pNetwork->GetIRCNick().GetNickMask() + " PRIVMSG " + sTarget + " :" + sPayload, NULL, m_pClient);
-  //}
+  PutUser(":" + m_pNetwork->GetIRCNick().GetNickMask() + " PRIVMSG " + sTarget + " :" + sPayload);
   
   PutIRC("PRIVMSG " + sTarget + " :" + sPayload);
 }
